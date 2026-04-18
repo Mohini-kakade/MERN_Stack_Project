@@ -14,18 +14,6 @@ function OtpLogin() {
   const [otp, setOtp] = useState("");
   const [showOtpBox, setShowOtpBox] = useState(false);
 
-  const sendOtp = async () => {
-    try {
-      const res = await axios.post("/auth/login/otp", {
-        email
-      });
-
-      alert("OTP: " + res.data.otp);
-      setShowOtpBox(true);
-    } catch (error) {
-      alert(error.response.data.message);
-    }
-  };
 
   const verifyOtp = async () => {
     try {
@@ -35,7 +23,7 @@ function OtpLogin() {
       });
 
       localStorage.setItem("token", res.data.token);
-
+      navigate("/feed");
       alert("Login Success");
     } catch (error) {
       alert(error.response.data.message);
