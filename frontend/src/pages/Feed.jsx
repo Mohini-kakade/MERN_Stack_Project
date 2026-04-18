@@ -37,35 +37,46 @@ function Feed() {
   };
 
   return (
-    <div style={{ padding: "40px" }}>
-      
-<button onClick={() => navigate("/add-feed")}>
+   <div className="min-h-screen bg-gray-100 p-6">
+      <div className="max-w-5xl mx-auto">
+
+         <div className="flex justify-between mb-6">
+          <h1 className="text-3xl font-bold">
+            Feed Posts
+          </h1>
+
+<button onClick={() => navigate("/add-feed")}  className="bg-indigo-600 text-white px-4 py-2 rounded">
   Add New Post
 </button>
+</div>
 
+    <div className="grid md:grid-cols-2 gap-6">
+          {posts.map((item) => (
+            <div
+              key={item._id}
+              className="bg-white rounded-xl shadow p-4"
+            >
+              <img
+                src={item.image}
+                alt=""
+                className="h-52 w-full object-cover rounded"
+              />
 
-      <h2>Feed Page</h2>
+              <h2 className="text-xl font-bold mt-3">
+                {item.title}
+              </h2>
 
-      {posts.length === 0 ? (
-        <p>No Posts Found</p>
-      ) : (
-        posts.map((item) => (
-          <div
-            key={item._id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "15px",
-              marginBottom: "15px"
-            }}
-          >
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-            <small>
-              By: {item.userId?.name}
-            </small>
-          </div>
-        ))
-      )}
+              <p className="text-gray-600 mt-2">
+                {item.description}
+              </p>
+
+              <p className="text-sm mt-2 text-indigo-600">
+                By {item.userId?.name}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

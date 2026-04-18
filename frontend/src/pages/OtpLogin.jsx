@@ -31,22 +31,26 @@ function OtpLogin() {
   };
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h2>Verify OTP</h2>
-    <p>{email}</p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+       <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
+        <h2 className="text-2xl font-bold text-center mb-4">
+          Verify OTP
+        </h2>
+    <p className="text-center text-gray-500 mb-4">{email}</p>
       <input
         placeholder="Enter Email"
+        className="w-full border p-3 rounded mb-4"
          onChange={(e) =>
           setOtp(e.target.value)
         }
       />
 
       
-      <br /><br />
-      <button onClick={verifyOtp}>
+     
+      <button onClick={verifyOtp} className="w-full bg-green-600 text-white p-3 rounded">
         Verify OTP
       </button>
-
+ </div>
     </div>
   );
 }

@@ -33,12 +33,14 @@ function AddFeed() {
   };
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h2>Add Feed Post</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+     
 
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler}  className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
+         <h2  className="text-2xl font-bold mb-5 text-center">Add Feed Post</h2>
         <input
           placeholder="Title"
+          className="w-full border p-3 rounded mb-4"
           onChange={(e) =>
             setForm({
               ...form,
@@ -47,10 +49,11 @@ function AddFeed() {
           }
         />
 
-        <br /><br />
+    
 
         <textarea
           placeholder="Description"
+           className="w-full border p-3 rounded mb-4"
           onChange={(e) =>
             setForm({
               ...form,
@@ -59,10 +62,11 @@ function AddFeed() {
           }
         />
 
-        <br /><br />
+      
 
         <input
           placeholder="Image URL"
+           className="w-full border p-3 rounded mb-4"
           onChange={(e) =>
             setForm({
               ...form,
@@ -73,7 +77,7 @@ function AddFeed() {
 
         <br /><br />
 
-        <button type="submit">
+        <button type="submit"  className="w-full bg-indigo-600 text-white p-3 rounded">
           Add Post
         </button>
       </form>
