@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import OtpLogin from "./pages/OtpLogin";
+import Feed from "./pages/Feed";
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
         <Route path="/" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/otp-login" element={<OtpLogin />} />
+        <Route path="/feed" element={<Feed />} />
+
 
 
       </Routes>
