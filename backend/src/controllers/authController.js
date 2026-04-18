@@ -2,6 +2,8 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const generateToken = require("../utils/generateToken");
+const Otp = require("../models/Otp");
+
 
 const registerUser = async (req, res) => {
   try {
@@ -65,8 +67,46 @@ const loginUser = async (req, res) => {
   }
 };
 
+
+const sendOtp = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({
+        message: "User not found"
+      });
+    }
+
+    const otp = Math.floor(
+      100000 + Math.random() * 900000
+    ).toString();
+
+    await Otp.deleteMany({ email });
+
+    await Otp.create({
+      email,
+      otp,
+      expiresAt: new Date(Date.now() + 5 * 60 * 1000)
+    });
+
+    res.json({
+      message: "OTP Sent",
+      otp: otp
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+};
+
+
 module.exports = {
   registerUser,
-  loginUser
+  loginUser,
+  sendOtp
 };
 
