@@ -103,10 +103,47 @@ const sendOtp = async (req, res) => {
   }
 };
 
+const verifyOtp = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+
+    const record = await Otp.findOne({
+      email,
+      otp
+    });
+
+    if (!record) {
+      return res.status(400).json({
+        message: "Invalid OTP"
+      });
+    }
+
+    if (record.expiresAt < new Date()) {
+      return res.status(400).json({
+        message: "OTP Expired"
+      });
+    }
+
+    const user = await User.findOne({ email });
+
+    await Otp.deleteMany({ email });
+
+    res.json({
+      message: "Login Success",
+      token: generateToken(user._id)
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+};
+
 
 module.exports = {
   registerUser,
   loginUser,
-  sendOtp
+  sendOtp,
+  verifyOtp
 };
 
