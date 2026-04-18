@@ -3,7 +3,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import OtpLogin from "./pages/OtpLogin";
 import Feed from "./pages/Feed";
-
+import AddFeed from "./pages/AddFeed";
 function App() {
   return (
      <BrowserRouter>
@@ -12,6 +12,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/otp-login" element={<OtpLogin />} />
         <Route path="/feed" element={<Feed />} />
+      
+        <Route path="/add-feed" element={<AddFeed />} />
+
 
 
 

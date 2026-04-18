@@ -38,6 +38,12 @@ function Feed() {
 
   return (
     <div style={{ padding: "40px" }}>
+      
+<button onClick={() => navigate("/add-feed")}>
+  Add New Post
+</button>
+
+
       <h2>Feed Page</h2>
 
       {posts.length === 0 ? (
