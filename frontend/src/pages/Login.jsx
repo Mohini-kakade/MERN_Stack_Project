@@ -2,8 +2,9 @@
 import { useState } from "react";
 import axios from "../api/axios";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 function Login() {
+    const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
     password: ""
@@ -14,10 +15,14 @@ function Login() {
 
     try {
       const res = await axios.post("/auth/login", form);
-
+         alert("OTP: " + res.data.otp);
       localStorage.setItem("token", res.data.token);
 
-      alert("Login Successful");
+      navigate("/otp-login", {
+        state: {
+          email: form.email
+        }
+      });
     } catch (error) {
       alert(error.response.data.message);
     }

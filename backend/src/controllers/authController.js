@@ -53,14 +53,21 @@ const loginUser = async (req, res) => {
       });
     }
 
+    
+    const otp = Math.floor(
+      100000 + Math.random() * 900000
+    ).toString();
+    await Otp.deleteMany({ email });
+
+    await Otp.create({
+      email,
+      otp,
+      expiresAt: new Date(Date.now() + 5 * 60 * 1000)
+    });
+
     res.json({
-      message: "Login Success",
-      token: generateToken(user._id),
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email
-      }
+      message: "OTP Sent",
+      otp: otp
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
