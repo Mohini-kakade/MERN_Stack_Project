@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -25,8 +24,8 @@ function Feed() {
 
       const res = await axios.get("/feed", {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       setPosts(res.data);
@@ -37,38 +36,31 @@ function Feed() {
   };
 
   return (
-   <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-5xl mx-auto">
+        <div className="flex justify-between mb-6">
+          <h1 className="text-3xl font-bold">Feed Posts</h1>
 
-         <div className="flex justify-between mb-6">
-          <h1 className="text-3xl font-bold">
-            Feed Posts
-          </h1>
+          <button
+            onClick={() => navigate("/add-feed")}
+            className="bg-indigo-600 text-white px-4 py-2 rounded"
+          >
+            Add New Post
+          </button>
+        </div>
 
-<button onClick={() => navigate("/add-feed")}  className="bg-indigo-600 text-white px-4 py-2 rounded">
-  Add New Post
-</button>
-</div>
-
-    <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {posts.map((item) => (
-            <div
-              key={item._id}
-              className="bg-white rounded-xl shadow p-4"
-            >
+            <div key={item._id} className="bg-white rounded-xl shadow p-4">
               <img
                 src={item.image}
                 alt=""
                 className="h-52 w-full object-cover rounded"
               />
 
-              <h2 className="text-xl font-bold mt-3">
-                {item.title}
-              </h2>
+              <h2 className="text-xl font-bold mt-3">{item.title}</h2>
 
-              <p className="text-gray-600 mt-2">
-                {item.description}
-              </p>
+              <p className="text-gray-600 mt-2">{item.description}</p>
 
               <p className="text-sm mt-2 text-indigo-600">
                 By {item.userId?.name}
@@ -82,4 +74,3 @@ function Feed() {
 }
 
 export default Feed;
-

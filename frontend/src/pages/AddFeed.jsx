@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +8,7 @@ function AddFeed() {
   const [form, setForm] = useState({
     title: "",
     description: "",
-    image: ""
+    image: "",
   });
 
   const submitHandler = async (e) => {
@@ -20,8 +19,8 @@ function AddFeed() {
 
       await axios.post("/feed", form, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       alert("Post Added");
@@ -34,50 +33,51 @@ function AddFeed() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-     
-
-      <form onSubmit={submitHandler}  className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
-         <h2  className="text-2xl font-bold mb-5 text-center">Add Feed Post</h2>
+      <form
+        onSubmit={submitHandler}
+        className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md"
+      >
+        <h2 className="text-2xl font-bold mb-5 text-center">Add Feed Post</h2>
         <input
           placeholder="Title"
           className="w-full border p-3 rounded mb-4"
           onChange={(e) =>
             setForm({
               ...form,
-              title: e.target.value
+              title: e.target.value,
             })
           }
         />
-
-    
 
         <textarea
           placeholder="Description"
-           className="w-full border p-3 rounded mb-4"
+          className="w-full border p-3 rounded mb-4"
           onChange={(e) =>
             setForm({
               ...form,
-              description: e.target.value
+              description: e.target.value,
             })
           }
         />
-
-      
 
         <input
           placeholder="Image URL"
-           className="w-full border p-3 rounded mb-4"
+          className="w-full border p-3 rounded mb-4"
           onChange={(e) =>
             setForm({
               ...form,
-              image: e.target.value
+              image: e.target.value,
             })
           }
         />
 
-        <br /><br />
+        <br />
+        <br />
 
-        <button type="submit"  className="w-full bg-indigo-600 text-white p-3 rounded">
+        <button
+          type="submit"
+          className="w-full bg-indigo-600 text-white p-3 rounded"
+        >
           Add Post
         </button>
       </form>
@@ -86,4 +86,3 @@ function AddFeed() {
 }
 
 export default AddFeed;
-
